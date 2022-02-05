@@ -1,6 +1,7 @@
 package dagnachew.leul.bot;
 
 import dagnachew.leul.bot.commands.*;
+import dagnachew.leul.bot.commands.dictionarycommands.DictionaryCommand;
 import dagnachew.leul.bot.commands.ebaadcommands.EbaadFanCommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -19,6 +20,7 @@ public class CommandManager {
         addCommand(new EbaadFanCommand());
         addCommand(new WebhookCommand());
         addCommand(new SetPrefixCommand());
+        addCommand(new DictionaryCommand());
     }
 
     private void addCommand(ICommand cmd) {

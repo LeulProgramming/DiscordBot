@@ -31,6 +31,8 @@ dependencies {
 
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '3.4.1'
     implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.30.1'
+    implementation group: 'org.json', name: 'json', version: '20211205'
+
 
 
 }
