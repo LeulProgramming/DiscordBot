@@ -16,7 +16,7 @@ public class Bot {
          SQLiteDataSource.getConnection();
 
          WebUtils.setUserAgent("Mozilla/5.0 Beta#3016 / The President Assad#3536");
-        JDABuilder.createDefault(
+         JDABuilder.createDefault(
                 Config.get("token"),
                         GatewayIntent.GUILD_MEMBERS,
                         GatewayIntent.GUILD_MESSAGES,
@@ -24,7 +24,7 @@ public class Bot {
                         GatewayIntent.GUILD_EMOJIS
                 )
                 .addEventListeners(new ListenerClass())
-                .setActivity(Activity.watching("Nothingness..."))
+               .setActivity(Activity.watching("Nothingness..."))
                 .build();
     }
 

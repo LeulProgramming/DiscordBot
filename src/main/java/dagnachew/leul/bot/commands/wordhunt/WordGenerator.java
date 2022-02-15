@@ -1,7 +1,4 @@
-package dagnachew.leul.bot.commands.dictionarycommands;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+package dagnachew.leul.bot.commands.wordhunt;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,23 +6,23 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Locale;
 
-public class Dictionary {
+public class WordGenerator {
 
+    private String selectedWord;
     private static HttpURLConnection connection;
 
-    public Dictionary() {
-
+    public WordGenerator() {
+        selectedWord = "hello";
     }
 
-    public String getDefinition(String word) {
+    private String getSelectedWord() {
         BufferedReader reader;
         String line;
         StringBuffer responseContent = new StringBuffer();
 
         try {
-            URL url = new URL("https://api.dictionaryapi.dev/api/v2/entries/en/" + word.toLowerCase());
+            URL url = new URL("https://random-word-api.herokuapp.com/word?number=1");
             connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
@@ -57,10 +54,10 @@ public class Dictionary {
         }finally {
             connection.disconnect();
         }
-        return word;
+
+        selectedWord = responseContent.toString().substring(1,responseContent.length()-1);
+
+        return selectedWord;
     }
-
-
-
 
 }
