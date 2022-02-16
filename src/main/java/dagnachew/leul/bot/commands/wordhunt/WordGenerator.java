@@ -16,7 +16,7 @@ public class WordGenerator {
         selectedWord = "hello";
     }
 
-    private String getSelectedWord() {
+    public String getSelectedWord() {
         BufferedReader reader;
         String line;
         StringBuffer responseContent = new StringBuffer();
@@ -45,7 +45,6 @@ public class WordGenerator {
                 }
                 reader.close();
             }
-            System.out.println(responseContent.toString());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -55,7 +54,7 @@ public class WordGenerator {
             connection.disconnect();
         }
 
-        selectedWord = responseContent.toString().substring(1,responseContent.length()-1);
+        selectedWord = responseContent.toString().substring(2,responseContent.length()-2);
 
         return selectedWord;
     }
