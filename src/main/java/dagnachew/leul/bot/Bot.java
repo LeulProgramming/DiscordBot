@@ -1,5 +1,7 @@
 package dagnachew.leul.bot;
 
+import dagnachew.leul.bot.commands.wordhunt.HangmanGame;
+import dagnachew.leul.bot.commands.wordhunt.HangmanListener;
 import dagnachew.leul.bot.database.SQLiteDataSource;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.JDABuilder;
@@ -24,6 +26,7 @@ public class Bot {
                         GatewayIntent.GUILD_EMOJIS
                 )
                 .addEventListeners(new ListenerClass())
+                 .addEventListeners(new HangmanListener())
                .setActivity(Activity.watching("Nothingness..."))
                 .build();
     }
