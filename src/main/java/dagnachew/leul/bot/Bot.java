@@ -1,5 +1,7 @@
 package dagnachew.leul.bot;
 
+import dagnachew.leul.bot.commands.wordhunt.HangmanGame;
+import dagnachew.leul.bot.commands.wordhunt.HangmanListener;
 import dagnachew.leul.bot.database.SQLiteDataSource;
 import me.duncte123.botcommons.web.WebUtils;
 import net.dv8tion.jda.api.JDABuilder;
@@ -16,7 +18,7 @@ public class Bot {
          SQLiteDataSource.getConnection();
 
          WebUtils.setUserAgent("Mozilla/5.0 Beta#3016 / The President Assad#3536");
-        JDABuilder.createDefault(
+         JDABuilder.createDefault(
                 Config.get("token"),
                         GatewayIntent.GUILD_MEMBERS,
                         GatewayIntent.GUILD_MESSAGES,
@@ -24,7 +26,8 @@ public class Bot {
                         GatewayIntent.GUILD_EMOJIS
                 )
                 .addEventListeners(new ListenerClass())
-                .setActivity(Activity.watching("Nothingness..."))
+                 .addEventListeners(new HangmanListener())
+               .setActivity(Activity.watching("Nothingness..."))
                 .build();
     }
 
