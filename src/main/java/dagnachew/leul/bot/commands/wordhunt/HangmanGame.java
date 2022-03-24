@@ -22,12 +22,14 @@ public class HangmanGame extends ListenerAdapter {
     private String word;
     private TextChannel channel;
     private User user;
+    private int points;
     public HangmanGame() {
 
     }
     public HangmanGame(String word, TextChannel channel) {
 
         this.word = word;
+        points = word.length() * 100;
         board = word.replaceAll("[a-z]", "_ ");
         this.channel = channel;
     }
@@ -40,16 +42,27 @@ public class HangmanGame extends ListenerAdapter {
         return board;
     }
 
+    public String getWord() {
+        return word;
+    }
+
     public void sendBoard(String board) {
         EmbedBuilder embed = new EmbedBuilder();
         embed.setColor(Color.cyan)
-                .setTitle("Hangman!!!")
+                .setTitle("Guess the Word!")
+                .setAuthor(user.getName())
+                .setFooter("Score: " + points)
                 .setDescription("```" + board + "```");
+        points /= 2;
         channel.sendMessage(embed.build()).queue();
     }
 
     public User getUser() {
         return user;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public void onGuess(String letter) {

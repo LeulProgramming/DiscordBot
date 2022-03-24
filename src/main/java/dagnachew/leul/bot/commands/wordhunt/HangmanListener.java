@@ -1,8 +1,10 @@
 package dagnachew.leul.bot.commands.wordhunt;
 
+import dagnachew.leul.bot.Config;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -25,14 +27,25 @@ public class HangmanListener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
-        if(gameStarted && game.getUser() == event.getAuthor()) {
-            String guess = event.getMessage().getContentRaw().substring(0);
-            game.onGuess(guess);
-        }
-        if(game.getBoard() != null) {
-            if(!game.getBoard().contains("_")) {
+        if(gameStarted) {
+            if(event.getMessage().getContentRaw().equalsIgnoreCase("giveup")) {
                 gameStarted = false;
+                game.sendBoard(game.getWord().replaceAll("", " "));
+            }
+            else if(event.getMessage().getContentRaw().equals(game.getWord())) {
+                gameStarted = false;
+                game.sendBoard(game.getWord().replaceAll("", " "));
+            }
+            else if(gameStarted && game.getUser() == event.getAuthor()) {
+                String guess = event.getMessage().getContentRaw().substring(0);
+                game.onGuess(guess);
+            }
+            else if(game.getBoard() != null) {
+                if(!game.getBoard().contains("_")) {
+                    gameStarted = false;
+                }
             }
         }
+
     }
 }
